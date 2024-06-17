@@ -1,25 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="54c981a5-c40e-4122-8f7c-8e25d6d14363" name="Changes" comment="" />
+    <list default="true" id="54c981a5-c40e-4122-8f7c-8e25d6d14363" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LibraryMgmtSystemInJava.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/model/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/model/Borrow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/model/Member.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/service/BookServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/service/BookServicesImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/service/BorrowServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/service/DatabaseUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/service/MemberServices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/service/MemberServicesImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/view/BookView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "sagarniroula112"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/sagarniroula112/Advanced-Java-2024.git",
+    "accountId": "dfb4954e-f3e6-4bf7-96a3-25bf76daa6f7"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 1
 }]]></component>
   <component name="ProjectId" id="2i0GrYsxfMzbw12FWxsSoPFuLcj" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.BookView.executor": "Run",
+    "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/sagar/Downloads/mysql-connector-java-8.0.26.jar",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
