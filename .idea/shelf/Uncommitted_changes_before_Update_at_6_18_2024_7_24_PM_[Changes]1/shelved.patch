@@ -1,0 +1,147 @@
+Index: src/com/service/MemberServicesImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.service;\r\n\r\nimport com.model.Book;\r\nimport com.model.Member;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.ResultSet;\r\nimport java.sql.Statement;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class MemberServicesImpl implements MemberServices {\r\n    @Override\r\n    public void addMember(Member m) {\r\n        try {\r\n            Class.forName(\"com.mysql.cj.jdbc.Driver\");\r\n            Connection con = DatabaseUtil.getConnection();\r\n            String sql = \"insert into member (name, contact) values('\" + m.getName() + \"', '\" + m.getContact() + \"')\";\r\n            Statement stm = con.createStatement();\r\n            stm.execute(sql);\r\n            System.out.println(\"Member successfully added!\");\r\n        }catch(Exception e){\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void removeMember(int id) {\r\n        try {\r\n            Class.forName(\"com.mysql.cj.jdbc.Driver\");\r\n            Connection con = DatabaseUtil.getConnection();\r\n            String sql = \"delete from member where id = '\"+id+\"'\";\r\n            Statement stm = con.createStatement();\r\n            stm.execute(sql);\r\n            System.out.println(\"Member removed successfully!\");\r\n        }catch(Exception e){\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public List<Member> getAllMembers() {\r\n        List<Member> members = new ArrayList<>();\r\n\r\n        try {\r\n            Class.forName(\"com.mysql.cj.jdbc.Driver\");\r\n            Connection con = DatabaseUtil.getConnection();\r\n            String sql = \"select * from member\";\r\n            Statement stm = con.createStatement();\r\n            ResultSet rs = stm.executeQuery(sql);\r\n            while (rs.next()) {\r\n                Member m = new Member();\r\n                m.setId(rs.getInt(\"id\"));\r\n                m.setName(rs.getString(\"title\"));\r\n                m.setContact(rs.getString(\"author\"));\r\n//                System.out.println(\"Book ID: \" + id);\r\n//                System.out.println(\"Book Title: \" + title);\r\n//                System.out.println(\"Book Author: \" + author);\r\n//                System.out.println(\"Book Availability Status: \" + avail);\r\n                members.add(m);\r\n            }\r\n\r\n            rs.close();\r\n            stm.close();\r\n            con.close();\r\n\r\n            System.out.println(\"All books shown successfully!\");\r\n        }catch(Exception e){\r\n            e.printStackTrace();\r\n        }\r\n        return members;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/service/MemberServicesImpl.java b/src/com/service/MemberServicesImpl.java
+--- a/src/com/service/MemberServicesImpl.java	
++++ b/src/com/service/MemberServicesImpl.java	
+@@ -51,8 +51,8 @@
+             while (rs.next()) {
+                 Member m = new Member();
+                 m.setId(rs.getInt("id"));
+-                m.setName(rs.getString("title"));
+-                m.setContact(rs.getString("author"));
++                m.setName(rs.getString("name"));
++                m.setContact(rs.getString("contact"));
+ //                System.out.println("Book ID: " + id);
+ //                System.out.println("Book Title: " + title);
+ //                System.out.println("Book Author: " + author);
+@@ -64,7 +64,7 @@
+             stm.close();
+             con.close();
+ 
+-            System.out.println("All books shown successfully!");
++            System.out.println("All members shown successfully!");
+         }catch(Exception e){
+             e.printStackTrace();
+         }
+Index: src/com/view/BorrowView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/view/BorrowView.java b/src/com/view/BorrowView.java
+new file mode 100644
+--- /dev/null	
++++ b/src/com/view/BorrowView.java	
+@@ -0,0 +1,4 @@
++package com.view;
++
++public class BorrowView {
++}
+Index: src/com/view/MemberView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/com/view/MemberView.java b/src/com/view/MemberView.java
+new file mode 100644
+--- /dev/null	
++++ b/src/com/view/MemberView.java	
+@@ -0,0 +1,93 @@
++package com.view;
++
++import com.model.Member;
++import com.service.MemberServices;
++import com.service.MemberServicesImpl;
++
++import java.util.Scanner;
++import java.util.List;
++
++public class MemberView {
++    public static void main(String[] args) {
++        final String ANSI_RESET = "\u001B[0m";
++        final String ANSI_RED = "\u001B[31m";  // Red color
++        Scanner sc = new Scanner(System.in);
++        boolean exit = false;
++
++        while(!exit){
++            System.out.println();
++            System.out.println("--------------------- MENU ------------------------");
++            System.out.println("Choose among options:: ");
++            System.out.println();
++            System.out.println("1. Add a Member.");
++            System.out.println("2. Show All Members.");
++            System.out.println("3. Remove a Member.");
++            System.out.println("4. EXIT.");
++            System.out.println();
++            System.out.print("Enter your choice::  ");
++            int choice = sc.nextInt();
++            switch(choice) {
++                case 1:
++                    addMember();
++                    break;
++
++                case 2:
++                    getAllMembers();
++                    break;
++
++                case 3:
++                    deleteMember();
++                    break;
++
++                case 4:
++                    exit = true;
++                    System.out.println(ANSI_RED + "Exiting the program." + ANSI_RESET);
++                    break;
++
++                default:
++                    System.out.println("Invalid choice!");
++                    break;
++            }
++        }
++
++
++
++    }
++
++    static void addMember() {
++        MemberServices mService = new MemberServicesImpl();
++
++        char flag = 'y';
++        Scanner sc = new Scanner(System.in);
++
++        do {
++            Member m = new Member();
++
++            System.out.println("Enter member name:: ");
++            m.setName(sc.nextLine());
++            System.out.println("Enter member contact:: ");
++            m.setContact(sc.nextLine());
++
++            mService.addMember(m);
++
++            System.out.println("Do you want to add more [y/n]? ");
++            flag = sc.nextLine().charAt(0);
++        } while (flag == 'y');
++    }
++
++    static void deleteMember() {
++        MemberServices mService = new MemberServicesImpl();
++
++        Scanner sc = new Scanner(System.in);
++        System.out.println("Enter member ID to delete:: ");
++        int id = sc.nextInt();
++        mService.removeMember(id);
++    }
++
++    static void getAllMembers(){
++        MemberServices mService = new MemberServicesImpl();
++
++        List<Member> members = mService.getAllMembers();
++        System.out.println(members);
++    }
++}
