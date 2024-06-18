@@ -51,8 +51,8 @@ public class MemberServicesImpl implements MemberServices {
             while (rs.next()) {
                 Member m = new Member();
                 m.setId(rs.getInt("id"));
-                m.setName(rs.getString("title"));
-                m.setContact(rs.getString("author"));
+                m.setName(rs.getString("name"));
+                m.setContact(rs.getString("contact"));
 //                System.out.println("Book ID: " + id);
 //                System.out.println("Book Title: " + title);
 //                System.out.println("Book Author: " + author);
@@ -64,7 +64,7 @@ public class MemberServicesImpl implements MemberServices {
             stm.close();
             con.close();
 
-            System.out.println("All books shown successfully!");
+            System.out.println("All members shown successfully!");
         }catch(Exception e){
             e.printStackTrace();
         }
