@@ -28,4 +28,13 @@ public class Member {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", contact='" + contact + '\'' +
+                '}'+ "\n";
+    }
 }
