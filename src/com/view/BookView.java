@@ -1,14 +1,14 @@
 package com.view;
 
 import com.model.Book;
-import com.service.BookServices;
-import com.service.BookServicesImpl;
+import com.service.BookService;
+import com.service.BookServiceImpl;
 
-import java.util.Scanner;
 import java.util.List;
+import java.util.Scanner;
 
 public class BookView {
-    public static void main(String[] args) {
+    public void showMenu() {
         final String ANSI_RESET = "\u001B[0m";
         final String ANSI_RED = "\u001B[31m";  // Red color
         Scanner sc = new Scanner(System.in);
@@ -16,7 +16,7 @@ public class BookView {
 
         while(!exit){
             System.out.println();
-            System.out.println("--------------------- MENU ------------------------");
+            System.out.println("--------------------- BOOK MENU ------------------------");
             System.out.println("Choose among options:: ");
             System.out.println();
             System.out.println("1. Add a Book.");
@@ -41,7 +41,7 @@ public class BookView {
 
                 case 4:
                     exit = true;
-                    System.out.println(ANSI_RED + "Exiting the program." + ANSI_RESET);
+                    System.out.println(ANSI_RED + "Exiting the book menu...." + ANSI_RESET);
                     break;
 
                 default:
@@ -55,7 +55,7 @@ public class BookView {
     }
 
     static void addBook() {
-        BookServices bService = new BookServicesImpl();
+        BookService bService = new BookServiceImpl();
 
         char flag = 'y';
         Scanner sc = new Scanner(System.in);
@@ -63,11 +63,11 @@ public class BookView {
         do {
             Book b = new Book();
 
-            System.out.println("Enter book title:: ");
+            System.out.print("Enter book title:: ");
             b.setTitle(sc.nextLine());
-            System.out.println("Enter book author:: ");
+            System.out.print("Enter book author:: ");
             b.setAuthor(sc.nextLine());
-            System.out.println("Enter book availability:: ");
+            System.out.print("Enter book availability:: ");
             b.setBookAvailabilityStatus(sc.nextLine());
 
             bService.addBook(b);
@@ -78,16 +78,17 @@ public class BookView {
     }
 
     static void deleteBook() {
-        BookServices bService = new BookServicesImpl();
+        BookService bService = new BookServiceImpl();
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter book ID to delete:: ");
+        System.out.println();
+        System.out.print("Enter book ID to delete:: ");
         int id = sc.nextInt();
-        bService.removeBook(id);
+        bService.deleteBook(id);
     }
 
     static void getAllBooks(){
-        BookServices bService = new BookServicesImpl();
+        BookService bService = new BookServiceImpl();
 
         List<Book> books = bService.getAllBooks();
         System.out.println(books);

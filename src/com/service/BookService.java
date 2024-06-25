@@ -4,8 +4,8 @@ import com.model.Book;
 
 import java.util.List;
 
-public interface BookServices {
+public interface BookService {
     void addBook(Book b);
-    void removeBook(int id);
+    void deleteBook(int id);
     List<Book> getAllBooks();
 }

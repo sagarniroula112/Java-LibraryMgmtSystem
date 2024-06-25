@@ -4,9 +4,9 @@ import com.model.Borrow;
 
 import java.util.List;
 
-public interface BorrowServices {
+public interface BorrowService {
     void addBorrow(Borrow b);
-    void removeBorrow(int id);
+    void deleteBorrow(int id);
 
     List<Borrow> getAllBorrow();
 }

@@ -4,9 +4,9 @@ import com.model.Member;
 
 import java.util.List;
 
-public interface MemberServices {
+public interface MemberService {
     void addMember(Member m);
-    void removeMember(int id);
+    void deleteMember(int id);
 
     List<Member> getAllMembers();
 }

@@ -1,13 +1,16 @@
 package com.model;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 public class Borrow {
     private int id;
     private int memberId;
     private int bookId;
-    private Date borrowDate;
-    private Date returnDate;
+    private LocalDate borrowDate;
+    private LocalDate returnDate;
     private double fine;
 
     public int getId() {
@@ -34,19 +37,19 @@ public class Borrow {
         this.bookId = bookId;
     }
 
-    public Date getBorrowDate() {
+    public LocalDate getBorrowDate() {
         return borrowDate;
     }
 
-    public void setBorrowDate(Date borrowDate) {
+    public void setBorrowDate(LocalDate borrowDate) {
         this.borrowDate = borrowDate;
     }
 
-    public Date getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
     }
 
-    public void setReturnDate(Date returnDate) {
+    public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
     }
 
@@ -55,6 +58,20 @@ public class Borrow {
     }
 
     public void setFine(double fine) {
-        this.fine = fine;
+
+            this.fine = fine;
+
+    }
+
+    @Override
+    public String toString() {
+        return "Borrow{" +
+                "id=" + id +
+                ", memberId=" + memberId +
+                ", bookId=" + bookId +
+                ", borrowDate=" + borrowDate +
+                ", returnDate=" + returnDate +
+                ", fine=Rs." + fine +
+                '}'+ "\n";
     }
 }

@@ -1,7 +1,6 @@
 package com.service;
 
 import com.model.Book;
-import com.model.Member;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,65 +8,69 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberServicesImpl implements MemberServices {
+public class BookServiceImpl implements BookService {
     @Override
-    public void addMember(Member m) {
-        try {
+    public void addBook(Book b) {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DatabaseUtil.getConnection();
-            String sql = "insert into member (name, contact) values('" + m.getName() + "', '" + m.getContact() + "')";
+            String sql = "insert into book (title, author, bookAvailabilityStatus) values('" + b.getTitle() + "', '" + b.getAuthor() + "', '" + b.getBookAvailabilityStatus() + "')";
             Statement stm = con.createStatement();
             stm.execute(sql);
-            System.out.println("Member successfully added!");
-        }catch(Exception e){
+            System.out.println("Book addition success 👍!");
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
 
     @Override
-    public void removeMember(int id) {
-        try {
+    public void deleteBook(int id) {
+        final String ANSI_RESET = "\u001B[0m";
+        final String ANSI_RED = "\u001B[31m";  // Red color
+
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DatabaseUtil.getConnection();
-            String sql = "delete from member where id = '"+id+"'";
+            String sql = "delete from book where id = '"+id+"'";
             Statement stm = con.createStatement();
             stm.execute(sql);
-            System.out.println("Member removed successfully!");
-        }catch(Exception e){
+            System.out.println(ANSI_RED+"Deletion success!"+ANSI_RESET);
+        }catch (Exception e){
             e.printStackTrace();
         }
     }
 
     @Override
-    public List<Member> getAllMembers() {
-        List<Member> members = new ArrayList<>();
+    public List<Book> getAllBooks() {
+        List<Book> books = new ArrayList<>();
 
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DatabaseUtil.getConnection();
-            String sql = "select * from member";
+            String sql = "select * from book";
             Statement stm = con.createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while (rs.next()) {
-                Member m = new Member();
-                m.setId(rs.getInt("id"));
-                m.setName(rs.getString("name"));
-                m.setContact(rs.getString("contact"));
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setTitle(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setBookAvailabilityStatus(rs.getString("bookAvailabilityStatus"));
 //                System.out.println("Book ID: " + id);
 //                System.out.println("Book Title: " + title);
 //                System.out.println("Book Author: " + author);
 //                System.out.println("Book Availability Status: " + avail);
-                members.add(m);
+                books.add(book);
             }
 
             rs.close();
             stm.close();
             con.close();
 
-            System.out.println("All members shown successfully!");
+            System.out.println("All books shown successfully!");
         }catch(Exception e){
             e.printStackTrace();
         }
-        return members;
+        return books;
     }
 }

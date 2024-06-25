@@ -6,14 +6,6 @@ public class Book {
     private String author;
     private String bookAvailabilityStatus;  // Available or not
 
-//    public Book(int id, String title, String author, String bookAvailabilityStatus){
-//        this.id = id;
-//        this.title = title;
-//        this.author= author;
-//        this.bookAvailabilityStatus = bookAvailabilityStatus;
-//    }
-
-
     @Override
     public String toString() {
         return "Book{" +
